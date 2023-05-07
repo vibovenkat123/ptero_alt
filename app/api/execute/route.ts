@@ -16,7 +16,7 @@ export async function POST(request: Request) {
         if (e instanceof Error) {
             if (e instanceof PrismaClientKnownRequestError && e.meta)  {
                 return new Response(
-                    e.meta.message,
+                    JSON.stringify(e.meta.message),
                     { status: 500 },
                 );
             }
