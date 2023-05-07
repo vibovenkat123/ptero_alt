@@ -1,6 +1,6 @@
 import { PrismaClient } from "@prisma/client";
 import { PrismaClientKnownRequestError } from "@prisma/client/runtime/library";
-import { NextResponse } from "next/server";
+export const runtime = "edge"
 export async function POST(request: Request) {
     const prisma = new PrismaClient();
     const formData = await request.formData();
