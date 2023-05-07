@@ -4,6 +4,13 @@ export async function POST(request: Request) {
     const prisma = new PrismaClient();
     const formData = await request.formData();
     const code = formData.get('execute');
+    const pass = formData.get('pass');
+    if (pass != process.env.PASS) {
+        return new Response(
+            'Wrong password',
+            { status: 403 },
+        );
+    }
     try {
         const result = await prisma.$queryRawUnsafe(String(code));
         console.log(result);
