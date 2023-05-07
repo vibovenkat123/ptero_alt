@@ -17,7 +17,12 @@ export async function POST(request: Request) {
         if (JSON.stringify(result) == "[]") {
             return new Response("No results. Success");
         }
-        return new Response(JSON.stringify(result));
+        return new Response(JSON.stringify(result), {
+            status: 200,
+            headers: {
+                'content-type': 'application/json',
+            },
+        });
     } catch (e) {
         if (e instanceof Error) {
             if (e instanceof PrismaClientKnownRequestError && e.meta)  {
